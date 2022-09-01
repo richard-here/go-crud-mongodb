@@ -7,3 +7,11 @@ type UserResponse struct {
 	Message string     `json:"message"`
 	Data    *fiber.Map `json:"data"`
 }
+
+func ErrorUserResponse(status int, err error) UserResponse {
+	return UserResponse{
+		Status:  status,
+		Message: "error",
+		Data:    &fiber.Map{"data": err.Error()},
+	}
+}
